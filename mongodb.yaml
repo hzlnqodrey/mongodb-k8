@@ -9,7 +9,7 @@ spec:
   selector:
     matchLabels:
       app: mongodb
-  template: # pod blueprint
+  template:
     metadata:
       labels:
         app: mongodb
@@ -26,9 +26,19 @@ spec:
               name: mongodb-secret
               key: mongo-root-username
         - name: MONGO_INITDB_ROOT_PASSWORD
-          valueFrom:
+          valueFrom: 
             secretKeyRef:
               name: mongodb-secret
               key: mongo-root-password
-              
-        
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+spec:
+  selector:
+    app: mongodb
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
