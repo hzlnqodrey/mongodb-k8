@@ -1,0 +1,3 @@
+1. Deployment file is going to repository/git/public, don't put ur secret in Deployment kind.
+
+2. Order of creation is MATTERS! build secret first then Deployment
